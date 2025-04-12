@@ -13,13 +13,16 @@ io.on("connection", (socket) => {
   });
   voiceCallListener(socket, io);
 });
-try {
-  await mongoose.connect(
-    "mongodb+srv://jmahato686:qSroxbDMHeWnYXTk@webrtc.xigqz.mongodb.net/?retryWrites=true&w=majority&appName=webRtc"
-  );
-  server.listen(3000, () => {
-    console.log("server running at http://localhost:3000");
-  });
-} catch (error) {
-  console.log("Error while connecting to database", error);
-}
+const startServer = async () => {
+  try {
+    await mongoose.connect(
+      "mongodb+srv://jmahato686:qSroxbDMHeWnYXTk@webrtc.xigqz.mongodb.net/?retryWrites=true&w=majority&appName=webRtc"
+    );
+    server.listen(3000, () => {
+      console.log("server running at port 3000");
+    });
+  } catch (error) {
+    console.log("Error while connecting to database", error);
+  }
+};
+startServer();
